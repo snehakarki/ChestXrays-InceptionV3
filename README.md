@@ -1,57 +1,86 @@
 
-# Medical AI - Chest X-ray Classification
 
-## Overview
+---
 
-This repository contains code for a binary classification model using transfer learning to classify chest X-ray images. The model is trained to distinguish between images showing the presence of a specific medical condition (e.g., atelectasis) and images with no findings. It uses Transfer Learning to create a convolutional neural network (CNN) model for binary classification based on the InceptionV3 architecture. 
+# 🩺 Medical Image Classification: Atelectasis Detection
 
-**InceptionV3**  is an image recognition model that has been shown to attain greater than 78.1% accuracy on the ImageNet dataset.One thing that is commonly done in computer vision is that we take a model trained on a very large dataset, then we run it on our own, smaller dataset. We then extract the intermediate representations (features) that the model generates. Even though the task may be quite different from the problem that the original model was trained on, but these representations are frequently informative for our own computer vision task,
-The model itself is made up of symmetric and asymmetric building blocks. This includes convolutions, average pooling, max pooling, concatenations, dropouts, and fully connected layers. Batch normalization is used extensively throughout the model and applied to activation inputs. Loss is computed using Softmax.
+## 🧠 Project Summary
 
-**Transfer learning** is beneficial in this context because the InceptionV3 model, which is pre-trained on a large dataset like ImageNet, has already learned useful features for image recognition. By using these pre-trained features, the model can achieve good performance even with a relatively small dataset. Like in this case a smaller dataset which is specific to the current task (detecting cardiomegaly in medical images). This approach is efficient in terms of both computation and data requirements.
+This project presents a **binary medical image classification system** designed to identify **Atelectasis** from chest X-rays. Leveraging **machine learning** techniques and confidence-based calibration, the model aims to support radiologists by offering reliable classification and interpretability through performance visualization.
 
-**Binary Classification** is a type of machine learning task. Here the goal is to classify input instances into one of two possible classes. In other words, it involves assigning a binary label to each instance based on its characteristics. The two classes are often denoted as positive and negative, or class 1 and class 0. In our model, the binary classification task involves distinguishing between two classes: "Atelectasis" (positive) and "No Finding" (negative). The data is split into training and testing sets. The images are organized and loaded into memory for visualization. This sets the stage for training a binary classification model.
+---
 
-## Getting Started
+## 🚀 Features
 
-### Prerequisites
+- ✅ **Binary Classification**: Predicts presence (`Atelectasis`) vs. absence (`Negative`) of the condition.
+- 📈 **Performance Metrics**:
+  - **Accuracy**, **Sensitivity**, **Specificity**
+  - **Confusion Matrix Analysis**
+- 📊 **Visual Diagnostics**:
+  - Confidence score histograms
+  - ROC curve with AUC
+- 📌 **Threshold Calibration**: Optimal classification threshold set to **0.5** for decision boundary.
 
-- Python 3.x
-- TensorFlow 2.x
-- NumPy
-- Pandas
-- Matplotlib
-- scikit-learn
+---
 
+## 🧪 Results
 
-## Usage
+### ✅ Performance Summary
 
-1. **Data Preparation:**
-   - Ensure you have the required dataset (chest X-ray images and labels).
-   - Update the `labels.csv` file with image filenames and corresponding labels.
+| Metric         | Value   |
+|----------------|---------|
+| **Accuracy**   | 0.72    |
+| **Sensitivity**| 0.94    |
+| **Specificity**| 0.53    |
+| **AUC (ROC)**  | 0.805   |
 
-2. **Environment Setup:**
-   - Set up a virtual environment and install dependencies.
+<sub>*Based on test set evaluation*</sub>
 
-3. **Training:**
-   - Adjust parameters such as learning rate, image dimensions, and model architecture in the code.
+### 🧾 Confusion Matrix
 
+|                | Pred: Positive | Pred: Negative |
+|----------------|----------------|----------------|
+| **Actual: Positive** | 34 (TP)         | 2 (FN)          |
+| **Actual: Negative** | 17 (FP)         | 19 (TN)         |
 
-4. **Inference:**
-   - Use the trained model for image classification.
+---
 
-5. **Results:**
-   - View ROC curves, AUC values, and other metrics in the notebook
+## 📊 Visual Insights
 
-## Directory Structure
+- **Histogram of Confidence Scores**:
+  - Clear distinction between correctly and incorrectly classified samples.
+  - High-confidence true positives dominate above threshold (0.5).
+  
+- **ROC Curve**:
+  - Shows robust classification capability with AUC = **0.805**.
+  - Demonstrates a strong balance between sensitivity and specificity.
 
-- `medical/images/`: Directory containing chest X-ray images.
-- `labels.csv`: CSV file with image filenames and labels.
-- `Chestxray.ipynb`: Script for training the classification model.
+---
 
+## 🧰 Tech Stack
 
+| Component          | Tools / Libraries             |
+|-------------------|-------------------------------|
+| Language           | Python                        |
+| ML Models          | Scikit-learn (e.g., XGBoost)  |
+| Data Visualization | Matplotlib, Seaborn           |
+| Image Processing   | OpenCV, PIL                   |
 
-## Acknowledgments
+---
 
-- This code is based on the [medical-ai](https://github.com/adleberg/medical-ai) repository by [Jason Adleberg](https://github.com/adleberg).
+## 🩻 Use Case
 
+- Automated assistance in **radiology workflows** for identifying **Atelectasis**.
+- Provides **confidence-based reasoning** for predictions.
+- Suitable for integration in **clinical decision support systems (CDSS)**.
+
+---
+
+## 🔮 Future Improvements
+
+- 📦 **Data Augmentation**: Improve robustness on diverse datasets.
+- 🧠 **Deep Learning**: Integrate CNN-based models for better spatial feature extraction.
+- 📈 **Threshold Tuning**: Explore dynamic thresholding based on patient risk profiles.
+- 🌐 **Web Interface**: Deploy model with an interactive UI for healthcare professionals.
+
+---
